@@ -3,7 +3,7 @@
         <h1>Consola</h1>
         <div class="Content">
             <div class="Info">
-                <p :class="{'Error':item.Error}" :key="key" v-for="(item,key) in Notificaciones">-{{item.Info}}</p>
+                <p :class="{'Error':item.Error}" :key="key" v-for="(item,key) in Notificaciones">- {{item.Info}}</p>
             </div>         
         </div>
     </div>
@@ -13,7 +13,15 @@ export default {
     data(){
         return{
             Notificaciones:[],
-            Inicio:[{Info:'Inciando..',Error:false},{Info:'CreadoMatriz..',Error:false}]
+        }
+    },
+    methods:{
+        ClosedTest()
+        {
+            if (!this.Notificaciones[this.Notificaciones.length-1].Error) {
+                this.Notificaciones.push({Info:'Prueba Finalizada .....',Error:false});
+            }
+            this.$emit('ClosedTest',false);
         }
     },
     watch:{
@@ -26,15 +34,20 @@ export default {
             }, 50);
            
         },
-        play:(e)=>
+        play:function(e)
         {
-            this.Inicio.forEach(element => {
-                setTimeout(() => {
-                  this.Notificaciones.push(element);
-                }, 500);
-            });
-            
+            if (e) {
+              let Inicio = [{Info:'Inciando..',Error:false},{Info:'CreadoMatriz..',Error:false}]
+            Inicio.forEach((element,key) => {
+                setTimeout(()=>{
+                  this.Notificaciones.push(element);           
+                    if (key==1) {
+                         this.ClosedTest();   
+                    }
+                }, 1000);
+            });   
            
+            }
         }
     },
     props:{

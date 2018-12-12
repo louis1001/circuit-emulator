@@ -23,12 +23,26 @@ export default {
             if (Bt.type=='Play')
             {
                 this.$emit('Play',true);
-                let Position = this.Buttons.indexOf(Bt);
-                Bt.Link=require('../assets/IconTool/Stop.svg');
-                this.$set(this.Buttons,Position,Bt);    
+               this.ReplaceLinck(Bt,require('../assets/IconTool/Stop.svg'));
+            }
+        },
+        ReplaceLinck(Bt,link)
+        {
+            let Position = this.Buttons.indexOf(Bt);
+            Bt.Link=link;
+            this.$set(this.Buttons,Position,Bt);    
+        }
+    },
+    watch:{
+        play:function(e){
+            if (!e) {
+                this.ReplaceLinck(this.Buttons[3],require('../assets/IconTool/Play.svg'));
             }
         }
-    }  
+    },
+    props:{
+        play:{type:Boolean,default:false}
+    }
 }
 </script>
 <style lang="scss" scoped>

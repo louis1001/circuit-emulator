@@ -3,9 +3,9 @@
    <Nav></Nav>
    <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet"></ListComponet>
    <div class="Grup3">
-      <BarTool @Play="ClikPlay"></BarTool>
+      <BarTool @Play="ClikPlay" :play="play"></BarTool>
       <WorkTable @Click="WorkTableClick"></WorkTable>
-      <Console :play="play"></Console>
+      <Console :play="play" @ClosedTest="ClikPlay"></Console>
       <Property></Property>
    </div>
 
@@ -34,6 +34,8 @@ export default {
     ClikPlay(e)
     {
       this.play=e;
+      console.log(e);
+      
     },
     WorkTableClick()
     {
