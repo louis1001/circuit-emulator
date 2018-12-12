@@ -1,19 +1,27 @@
 <template>
     <div class="Property">
         <h1>Propiedades</h1>
-        <div v-if="componente!==null" class="Form" :key="key" v-for="(item,key) in Object.keys(componente)">
+        <div class="Form" :key="key" v-for="(item,key) in Object.keys(componente)">
              <label :for="item">{{item.replace(/_/g,' ')}}: </label>
-             <input  :name="item" type="text" v-model="componente[item]">
-        </div>  
-    </div>    
+             <input :name="item" type="text" v-model="componente[item]">
+        </div>
+    </div>
 </template>
 <script>
 export default {
     props:{
-         componente:{
-             type:Object,
-              default:function(){return {Name:'s',Voltage_max:undefined,Resistenca:undefined,Intencidad:undefined,Capacitacia:undefined}}
-             }
+        componente: {
+            type: Object,
+            default: function() {
+                return {
+                    Name:'s',
+                    Voltage_max:undefined,
+                    Resistenca:undefined,
+                    Intencidad:undefined,
+                    Capacitacia:undefined
+                }
+            }
+        }
     }
 }
 </script>
@@ -26,7 +34,7 @@ export default {
         width: 100%;
         height: 100%;
         background-color: #ececec;
-        h1 
+        h1
         {
             position: relative;
             color: rgb(255, 255, 255);
