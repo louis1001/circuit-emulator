@@ -8,7 +8,7 @@
       <Console :play="play"></Console>
       <Property></Property>
    </div>
-   
+
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@ import Nav from '../components/Nav';
 import ListComponet from '../components/ListComponet';
 import WorkTable from '../components/WorkTable';
 import BarTool from '../components/BarTool'
-import Console from '../components/Console' 
+import Console from '../components/Console'
 import Property from '../components/Property';
 
 export default {
@@ -35,10 +35,10 @@ export default {
     {
       this.play=e;
     },
-    WorkTableClick(e)
+    WorkTableClick()
     {
       this.PermitClick=true;
-      this.Componente='';   
+      this.Componente='';
     },
     ClickComponet(e)
     {

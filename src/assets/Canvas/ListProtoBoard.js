@@ -15,11 +15,11 @@ export default class ListProtoBoard {
     constructor(canva,count,size)
     {
         MyCanva = canva;
-    this.Count = count;
-    this.Size = size;
-    this.List = [];
-    this.height = 0
-    this.SelectNodo = {};
+        this.Count = count;
+        this.Size = size;
+        this.List = [];
+        this.height = 0
+        this.SelectNodo = {};
     }
 
     Create()
@@ -59,22 +59,30 @@ export default class ListProtoBoard {
         }
     }
 
-    Hover()
-    {
+    GetHoverNode (elMouse){
+
+        let hoverNode = null
         // buscala matriz en la que esta el mause
-            let contador = 0;
+        let contador = 0;
         for (let i = 0; i < this.List.length; i++) {
-            let Info = this.List[i].Hover();
+            let Info = this.List[i].Hover(elMouse);
             if (Info != null) {
                 contador++;
-                this.SelectNodo = Info;
+                hoverNode = Info
             }
         }
         // elimina la matriz
         if (contador==0)
         {
-            this.SelectNodo = null;
+            hoverNode = null;
         }
+
+        return hoverNode
+    }
+
+    Hover(elMouse)
+    {
+        this.SelectNodo = this.GetHoverNode(elMouse);
     }
 }
 
@@ -165,18 +173,18 @@ class Matrices {
         }
     }
 
-    Hover()
+    Hover(elMouse)
     {
 
         // verifica que el Mause este sonbre la matriz
-        if (this.Position.x < MyCanva.mouseX &&  MyCanva.mouseX < this.Size.x) {
-            if (this.Position.y < MyCanva.mouseY && MyCanva.mouseY < (this.Position.y+this.Size.y)) {
+        if (this.Position.x < elMouse.x &&  elMouse.x < this.Size.x) {
+            if (this.Position.y < elMouse.y && elMouse.y < (this.Position.y+this.Size.y)) {
                 //convirte la posicion del mause en una posicion en la matriz de nodos
-                let PositionX = parseInt((MyCanva.mouseX-this.Position.x)/(this.Size.x/this.provided.Colum),10);
-                let PositionY = parseInt((MyCanva.mouseY-this.Position.y)/(this.Size.y/this.provided.Row),10);
+                let PositionX = parseInt((elMouse.x-this.Position.x)/(this.Size.x/this.provided.Colum),10);
+                let PositionY = parseInt((elMouse.y-this.Position.y)/(this.Size.y/this.provided.Row),10);
                 // verifica si es sobre el nodo que esta el mause
                 let SelectNodo = this.ProtoMatriz[PositionY][PositionX];
-                if (SelectNodo.Hover()) {
+                if (SelectNodo.Hover(elMouse)) {
                     let InfoNodo = SelectNodo.GetNodo();
                     InfoNodo.ProtoBoard = {Name:this.Name,Type:this.Type,Position:{x:PositionX,y:PositionY}};
                     this.Render({x:PositionX,y:PositionY});
@@ -223,10 +231,10 @@ class Nodo
         MyCanva.strokeWeight(0);
     }
     // verifica si el mause esta sobre el nodo
-    Hover()
+    Hover(elMouse)
     {
-        if (this.Position.x-this.border < MyCanva.mouseX && this.Position.x+this.Size+this.border > MyCanva.mouseX) {
-            if (this.Position.y-this.border < MyCanva.mouseY && this.Position.y+this.Size+this.border > MyCanva.mouseY) {
+        if (this.Position.x-this.border < elMouse.x && this.Position.x+this.Size+this.border > elMouse.x) {
+            if (this.Position.y-this.border < elMouse.y && this.Position.y+this.Size+this.border > elMouse.y) {
                     return true;
             }
         }

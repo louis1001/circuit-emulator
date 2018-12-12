@@ -4,7 +4,7 @@
         <div class="Table">
              <VueP5 class="P5"   v-on="{setup,draw}"></VueP5>
         </div>
-    </div>    
+    </div>
 </template>
 <script>
 import VueP5 from 'vue-p5';
@@ -31,7 +31,7 @@ export default {
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
             this.LisProtoBoard.Render();
-            
+
             let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
                                        {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
                                        {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:10,y:2},Receptor:{Proto:'Norma1',x:15,y:2}},
@@ -49,12 +49,12 @@ export default {
             BCprolog.Create((err,query)=>{
                 query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
                     console.log(value);
-                    
+
                 });
             });
 
            // console.log(BCprolog.GetPredicado());
-            
+
             //let BdTau = new BdProlog();
            /* let BConocimento = TauProlog.create();
             BConocimento.consult("prueba(12,2,'Pedo').");
@@ -65,9 +65,10 @@ export default {
         },
         draw(sketch)
         {
-            this.LisProtoBoard.Hover();
+            const elMouse = sketch.createVector(sketch.mouseX, sketch.mouseY)
+            this.LisProtoBoard.Hover(elMouse);
             // SelectNodo es:
-           // Datos del Nodo <Position(Localizacion en el Canvas),Size> y su relacion con 
+           // Datos del Nodo <Position(Localizacion en el Canvas),Size> y su relacion con
            // la ProtoBoard <Name,Type,Position(Localizacion del Nodo en la matriz)>
            // Estructura {Position:{x:0,y:0},Size:0,ProtoBoard:{Name:string,Type:string,Position:{x:0,y:0}}}
             //let SelectNodo = this.LisProtoBoard.SelectNodo;
@@ -80,7 +81,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .WorkTable
-    {   
+    {
         position: relative;
         grid-column: 1;
         grid-row: 2;
