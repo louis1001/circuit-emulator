@@ -64,7 +64,7 @@ export default {
         height: 100%;
         display: inline-grid;
         grid-template-columns: 1fr 270px;
-        grid-template-rows: auto 1fr 20%;
+        grid-template-rows: 50px 1fr 150px;
     }
   }
 </style>

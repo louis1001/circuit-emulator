@@ -1,7 +1,9 @@
 <template>
     <div class="WorkTable">
         <h1 @click="Click">Mesa de trabajo</h1>
-        <VueP5 class="P5"   v-on="{setup,draw}"></VueP5>
+        <div class="Table">
+             <VueP5 class="P5"   v-on="{setup,draw}"></VueP5>
+        </div>
     </div>    
 </template>
 <script>
@@ -84,6 +86,9 @@ export default {
         grid-row: 2;
         width: 100%;
         height: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr;
         h1
         {
             color:rgb(255, 255, 255);
@@ -93,13 +98,18 @@ export default {
             text-align: left;
             padding-left: 10px;
         }
-        .P5
+        .Table
         {
-            position:absolute;
+            position: relative;
+            overflow:auto;
             width: 100%;
             height: 100%;
-            background-color: #cecece;
-            overflow: auto;
+            .P5
+            {
+                position:absolute;
+                background-color: #cecece;
+                overflow: auto;
+            }
         }
     }
 </style>
