@@ -3,9 +3,9 @@
    <Nav></Nav>
    <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet"></ListComponet>
    <div class="Grup3">
-      <BarTool></BarTool>
+      <BarTool @Play="ClikPlay"></BarTool>
       <WorkTable @Click="WorkTableClick"></WorkTable>
-      <Console></Console>
+      <Console :play="play"></Console>
       <Property></Property>
    </div>
    
@@ -29,8 +29,12 @@ export default {
     Console,
     Property,
   },
-  data(){return{PermitClick:false,Componente:''}},
+  data(){return{PermitClick:false,Componente:'',play:false}},
   methods:{
+    ClikPlay(e)
+    {
+      this.play=e;
+    },
     WorkTableClick(e)
     {
       this.PermitClick=true;

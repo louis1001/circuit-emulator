@@ -12,6 +12,8 @@
 export default {
     data(){
         return{
+            Notificaciones:[],
+            Inicio:[{Info:'Inciando..',Error:false},{Info:'CreadoMatriz..',Error:false}]
         }
     },
     watch:{
@@ -23,13 +25,20 @@ export default {
                  Cont.scrollTop = Info.offsetHeight;
             }, 50);
            
+        },
+        play:(e)=>
+        {
+            this.Inicio.forEach(element => {
+                setTimeout(() => {
+                  this.Notificaciones.push(element);
+                }, 500);
+            });
+            
+           
         }
     },
     props:{
-        Notificaciones:{
-            type:Array,
-            default:function(){return[]}
-        }
+        play:{type:Boolean,default:false}
     }
 }
 </script>

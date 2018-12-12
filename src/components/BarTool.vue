@@ -1,7 +1,7 @@
 <template>
     <div class="BarTool">
         <ul class="Tools">
-            <li class="Item" :class="{Bt:(Item.type!='Separdor')}" :key="key" v-for="(Item,key) in Buttons">
+            <li class="Item" :class="{Bt:(Item.type!='Separdor')}" :key="key" v-for="(Item,key) in Buttons" @click="Click(Item)">
                 <img v-bind:src="Item.Link">
             </li>
         </ul>
@@ -17,7 +17,18 @@ export default {
                 {type:'Separdor',Link:require('../assets/IconTool/Separador.svg')},
                 {type:'Play',Link:require('../assets/IconTool/Play.svg')}]
         }
-    }    
+    },
+    methods:{
+        Click(Bt){
+            if (Bt.type=='Play')
+            {
+                this.$emit('Play',true);
+                let Position = this.Buttons.indexOf(Bt);
+                Bt.Link=require('../assets/IconTool/Stop.svg');
+                this.$set(this.Buttons,Position,Bt);    
+            }
+        }
+    }  
 }
 </script>
 <style lang="scss" scoped>
