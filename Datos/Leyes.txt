@@ -1,0 +1,26 @@
+
+emisorProtoIgualCable(My,Emisor):-
+        (componente(Emisor,_D1,_D2,_D3,_D4,PBREmisor,PXREmisor,_D5),
+        cable(PBREmisor,PXREmisor,_D6,PBEMy,PXEMy,_D7),
+        componente(My,_D8,PBEMy,PXEMy,_D9,_D10,_D11,_D12)).
+        
+emisorProtoDiferentCable(My,Emisor):-
+        (componente(Emisor,_D1,_D2,_D3,_D4,PBREmisor,_D5,PYEmisor),
+        cable(PBREmisor,_D6,PYEmisor,PBEMy,PXEMy,_D7),
+        componente(My,_D8,PBEMy,PXEMy,_D9,_D10,_D11,_D12),PBREmisor\==PBEMy).
+        
+emisorProtoIgual(My,Emisor):-
+        (componente(Emisor,_D1,_D2,_D3,_D4,PBREmisor,PXREmisor,_D5),
+        componente(My,_D8,PBREmisor,PXREmisor,_D9,_D10,_D11,_D12)).
+        
+emisorProtoDiferent(My,Emisor):-
+        (componente(Emisor,_D1,_D2,_D3,_D4,PBREmisor,_D5,PYEmisor),
+        componente(My,_D8,PBEMy,PYEmisor,_D9,PBRMy,_D11,_D12),PBREmisor\==PBEMy,PBRMy\==PBEMy,PBREmisor==PBEMy).
+        
+emisor(My,Emisor):-
+        emisorProtoDiferent(My,Emisor);
+        emisorProtoIgual(My,Emisor);
+        emisorProtoDiferentCable(My,Emisor);
+        emisorProtoIgualCable(My,Emisor).
+        
+paralelo(My,Otro):- emisor(My,Emisor),emisor(Otro,Emisor),My\==Otro.
