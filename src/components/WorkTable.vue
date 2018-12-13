@@ -92,7 +92,8 @@ export default {
     },
     props:{
         Componente:{type:String,default:''},
-        ListComp:{type:Array,default:function(){return[]}}
+        ListComp:{type:Array,default:function(){return[]}},
+        play:{type:Boolean,default:false}
     },
     watch:{
         Componente:function(val)

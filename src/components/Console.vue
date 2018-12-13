@@ -22,6 +22,10 @@ export default {
                 this.Notificaciones.push({Info:'Prueba Finalizada .....',Error:false});
             }
             this.$emit('ClosedTest',false);
+        },
+        Log(text,error=false)
+        {
+            this.Notificaciones.push({Info:text,Error:error});   
         }
     },
     watch:{
@@ -34,24 +38,24 @@ export default {
             }, 50);
            
         },
-        play:function(e)
+        Circuito:function(val)
         {
-            if (e) {
-              let Inicio = [{Info:'Inciando..',Error:false},{Info:'CreadoMatriz..',Error:false}]
-            Inicio.forEach((element,key) => {
-                setTimeout(()=>{
-                  this.Notificaciones.push(element);           
-                    if (key==1) {
-                         this.ClosedTest();   
-                    }
-                }, 1000);
-            });   
-           
+            this.Log('Inciando..');
+            this.Log('Cargado Circuito');
+            if (val.length>0 && this.play){
+                console.log(val);  
+                this.Log('Se a Cargado Circuito');
             }
+            else
+            {
+                this.Log('Error al Cargado Circuito',true);
+            }
+            this.ClosedTest();   
         }
     },
     props:{
-        play:{type:Boolean,default:false}
+        play:{type:Boolean,default:false},
+        Circuito:{type:Array,default:function(e){return[]}}
     }
 }
 </script>
