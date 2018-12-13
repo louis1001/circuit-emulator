@@ -39,7 +39,7 @@ export default {
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
             setupIconComp(sketch,this.ListComp);
-            this.$emit('Charge',false);
+            this.$emit('Charge',false); 
             // let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
             //                            {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
             //                            {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:10,y:2},Receptor:{Proto:'Norma1',x:15,y:2}},
@@ -88,14 +88,26 @@ export default {
     },
     props:{
         Componente:{type:String,default:''},
-        ListComp:{type:Array,default:function(){return[]}}
+        ListComp:{type:Array,default:function(){return[]}},
+        play:{type:Boolean,default:false}
     },
     watch:{
         Componente:function(val)
         {
             console.log(val);
             
-        }
+            
+        },
+        play:function(val)
+        {
+            console.log(val);
+            
+              if (val) {
+                  console.log(this.LisProtoBoard.boardComponents);
+                  this.$emit('GetCircut',this.LisProtoBoard.boardComponents);
+              }
+        },
+        
     }
 }
 </script>

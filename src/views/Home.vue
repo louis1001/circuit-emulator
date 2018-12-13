@@ -6,8 +6,9 @@
    <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet" @load="e=>{this.ListComp=e}"></ListComponet>
    <div class="Grup3">
       <BarTool @Play="ClikPlay" :play="play"></BarTool>
-      <WorkTable @Charge="e=>this.Charge=e" @Click="WorkTableClick" :Componente="Componente" :ListComp="ListComp"></WorkTable>
-      <Console :play="play" @ClosedTest="ClikPlay"></Console>
+      <WorkTable @Charge="e=>this.Charge=e" @GetCircut="e =>{this.Circut=e}" @Click="WorkTableClick" 
+        :Componente="Componente" :ListComp="ListComp" :play="play"></WorkTable>
+      <Console :play="play" @ClosedTest="ClikPlay" :Circuito="this.Circut"></Console>
       <Property></Property>
    </div>
   </div>
@@ -31,7 +32,7 @@ export default {
     Console,
     Property,
   },
-  data(){return{PermitClick:false,Componente:'',play:false,ListComp:[],Charge:true}},
+  data(){return{PermitClick:false,Componente:'',play:false,ListComp:[],Charge:true,Circut:[]}},
   methods:{
     ClikPlay(e)
     {
