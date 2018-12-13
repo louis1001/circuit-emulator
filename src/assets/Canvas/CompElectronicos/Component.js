@@ -13,27 +13,51 @@ class Componente{
 
         this.cellSize = 20
 
-        this.img = this.prototype.imgs[img]
+        console.log(this.imgs)
+        this.img = this.imgs[img]
     }
 
     render(){
         this.sketch.push()
         this.sketch.strokeWeight(1)
-        this.sketch.fill(0)
+        //this.sketch.fill(0)
         this.sketch.stroke(100)
         for (let i = 0; i < this.gridSize.x; i++){
             for (let j = 0; j < this.gridSize.y; j++){
-                this.sketch.rect((this.pos.x - 5) + i * 20, (this.pos.y - 5) + j * 20, 20, 20)
+                this.sketch.rect(
+                    (this.pos.x - this.cellSize/4) + i * this.cellSize,
+                    (this.pos.y - this.cellSize/4) + j * this.cellSize,
+                    this.cellSize,
+                    this.cellSize)
             }
         }
+
+        const imgDim = {
+            x: this.pos.x - this.gridSize.x/4,
+            y: this.pos.y - this.gridSize.y/4,
+            w: this.gridSize.x * this.cellSize,
+            h: this.gridSize.y * this.cellSize
+        }
+
+        this.sketch.image(this.img, imgDim.x, imgDim.y, imgDim.w, imgDim.h)
+
         this.sketch.pop()
     }
+}
+
+Componente.prototype.componentes = {}
+
+export function addComponent(name, comp){
+    Componente.prototype.componentes[name] = comp
+}
+
+export function getComponent(name){
+    return Componente.prototype.componentes[name]
 }
 
 Componente.prototype.imgs = {}
 
 export function setupIconComp(sketch,ImageNames){
-    console.log('Wrong!')    
     ImageNames.forEach(img => {
         Componente.prototype.imgs[img] = undefined
         sketch.loadImage('/IconComp/' + img + '.png',

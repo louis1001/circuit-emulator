@@ -11,6 +11,12 @@ import VueP5 from 'vue-p5';
 //import ProtoBoard from '../assets/Canvas/ProtoBoard.js';
 import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
 import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
+
+import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
+import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
+
+addComponent('Resistencia', Resistencia)
+
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
     data(){
@@ -26,15 +32,13 @@ export default {
         Click()
         {
             this.$emit('Click');
-             console.log(this.Componente);
             this.LisProtoBoard.Click()
             //console.log(this.LisProtoBoard.ListProtoBoard);
-           
-            
+
+
         },
         setup(sketch)
         {
-            console.log(sketch)
             sketch.createCanvas(1200, 1000);
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
@@ -93,8 +97,11 @@ export default {
     watch:{
         Componente:function(val)
         {
-            console.log(val);
-            
+            if(val){
+                this.LisProtoBoard.ActualizarComponenteSeleccionado("Resistencia")
+            }else{
+                this.LisProtoBoard.ActualizarComponenteSeleccionado('')
+            }
         }
     }
 }

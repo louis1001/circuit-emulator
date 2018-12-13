@@ -10,7 +10,7 @@ ColorNodoConect = {R:255,G:179,B:11},
 ColorMatrizNorma = {R:255,G:255,B:255},
 ColorMatrizPolo = {R:81,G:81,B:81};
 
-// import Resistencia from './CompElectronicos/Resistencia'
+import {getComponent} from './CompElectronicos/Component'
 // import {setupIconComp} from './CompElectronicos/Component'
 
 export default class ListProtoBoard {
@@ -25,6 +25,7 @@ export default class ListProtoBoard {
         this.height = 0
         this.SelectNodo = {};
         this.boardComponents = []
+        this.ComponenteSeleccionado = undefined
     }
 
     Create()
@@ -68,22 +69,34 @@ export default class ListProtoBoard {
             x.render()
         })
 
+        if (this.ComponenteSeleccionado) {
+            this.ComponenteSeleccionado.pos = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
+            this.ComponenteSeleccionado.render()
+        }
+
         // this.resPrueba.pos = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
         // this.resPrueba.render()
     }
 
     AddCompBoard(){
-        // const elMouse = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
-        // const NodeUnder = this.GetHoverNode(elMouse)
-      /*  if (NodeUnder){
-            this.resPrueba.pos = MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y)
+        const elMouse = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
+        const NodeUnder = this.GetHoverNode(elMouse)
+        if (NodeUnder && this.ComponenteSeleccionado){
+            this.ComponenteSeleccionado.pos = MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y)
 
-            this.boardComponents.push(this.resPrueba)
+            this.boardComponents.push(this.ComponenteSeleccionado)
+        }
+    }
 
-            this.resPrueba = new Resistencia(MyCanva)
+    ActualizarComponenteSeleccionado(comp){
 
-            console.log(NodeUnder)
-        }*/
+        const componentClass = getComponent(comp)
+
+        if(componentClass){
+            this.ComponenteSeleccionado = new componentClass(MyCanva)
+        }else{
+            this.ComponenteSeleccionado = undefined
+        }
     }
 
     GetHoverNode (elMouse){
