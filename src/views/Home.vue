@@ -4,7 +4,7 @@
    <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet"></ListComponet>
    <div class="Grup3">
       <BarTool @Play="ClikPlay" :play="play"></BarTool>
-      <WorkTable @Click="WorkTableClick"></WorkTable>
+      <WorkTable @Click="WorkTableClick" :Componente="Componente"></WorkTable>
       <Console :play="play" @ClosedTest="ClikPlay"></Console>
       <Property></Property>
    </div>

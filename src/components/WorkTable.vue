@@ -24,7 +24,10 @@ export default {
         Click()
         {
             this.$emit('Click');
+             console.log(this.Componente);
             this.LisProtoBoard.Click()
+           
+            
         },
         setup(sketch)
         {
@@ -77,7 +80,8 @@ export default {
     },
     components: {
         VueP5
-    }
+    },
+    props:{Componente:{type:String,default:''}}
 }
 </script>
 <style lang="scss" scoped>
