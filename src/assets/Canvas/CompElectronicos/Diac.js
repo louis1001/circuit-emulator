@@ -1,6 +1,6 @@
 import Component from './Component'
 
-class Resistencia extends Component{
+class Diac extends Component{
 	constructor(sketch){
 		const ins = [sketch.createVector(0, 0)]
         const outs = [sketch.createVector(2, 0)]
@@ -9,10 +9,10 @@ class Resistencia extends Component{
 
         const mouseOffset = sketch.createVector(1, 0)
 
-        super(sketch, gridSize, 'Resistencia', ins, outs, mouseOffset)
+        super(sketch, gridSize, 'Diac', ins, outs, mouseOffset)
 
         this.imgScale = 0.7
     }
 }
 
-export default Resistencia
+export default Diac

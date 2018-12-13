@@ -1,6 +1,6 @@
 import Component from './Component'
 
-class LED extends Component{
+class Condensador extends Component{
 	constructor(sketch){
 		const ins = [sketch.createVector(0, 2)]
         const outs = [sketch.createVector(1, 2)]
@@ -9,10 +9,10 @@ class LED extends Component{
 
         const mouseOffset = sketch.createVector(0, 2)
 
-        super(sketch, gridSize, 'LED', ins, outs, mouseOffset)
+        super(sketch, gridSize, 'Condensador', ins, outs, mouseOffset)
 
         this.imgScale = 0.8
     }
 }
 
-export default LED
+export default Condensador

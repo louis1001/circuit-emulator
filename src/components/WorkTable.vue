@@ -16,10 +16,29 @@ import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
 import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
 import Bateria from '../assets/Canvas/CompElectronicos/Bateria'
 import LED from '../assets/Canvas/CompElectronicos/LED'
+import Diodo from '../assets/Canvas/CompElectronicos/Diodo'
+import Fusible from '../assets/Canvas/CompElectronicos/Fusible'
+import Condensador from '../assets/Canvas/CompElectronicos/Condensador'
+import Interruptor from '../assets/Canvas/CompElectronicos/Interruptor'
+import Bobina from '../assets/Canvas/CompElectronicos/Bobina'
+import Potenciometro from '../assets/Canvas/CompElectronicos/Potenciometro'
+import Diac from '../assets/Canvas/CompElectronicos/Diac'
+import Rele from '../assets/Canvas/CompElectronicos/Rele'
+import Transistor from '../assets/Canvas/CompElectronicos/Transistor'
 
 addComponent('Resistencia', Resistencia)
 addComponent('Bateria', Bateria)
 addComponent('LED', LED)
+addComponent('Diodo', Diodo)
+addComponent('Fusible', Fusible)
+addComponent('Bobina', Bobina)
+addComponent('Interructor', Interruptor)
+addComponent('Condensador', Condensador)
+addComponent('Potenciometro', Potenciometro)
+addComponent('Diac', Diac)
+addComponent('Rele', Rele)
+addComponent('Transistor', Transistor)
+
 
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
@@ -99,8 +118,8 @@ export default {
                 NewComp.Type = (typeof element)
                 if (CountType[NewComp.Type]!==undefined) {
                     CountType[NewComp.Type]=0;
-                } 
-                else 
+                }
+                else
                 {
                      CountType[NewComp.Type]= CountType[NewComp.Type]+1;
                 }
