@@ -1,14 +1,16 @@
 <template>
+  <div>
+    <div class="Charge" v-if="Charge"></div>
   <div class="home">
    <Nav></Nav>
-   <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet"></ListComponet>
+   <ListComponet :ActiveBt="PermitClick" @Click="ClickComponet" @load="e=>{this.ListComp=e}"></ListComponet>
    <div class="Grup3">
       <BarTool @Play="ClikPlay" :play="play"></BarTool>
-      <WorkTable @Click="WorkTableClick" :Componente="Componente"></WorkTable>
+      <WorkTable @Charge="e=>this.Charge=e" @Click="WorkTableClick" :Componente="Componente" :ListComp="ListComp"></WorkTable>
       <Console :play="play" @ClosedTest="ClikPlay"></Console>
       <Property></Property>
    </div>
-
+  </div>
   </div>
 </template>
 <script>
@@ -29,7 +31,7 @@ export default {
     Console,
     Property,
   },
-  data(){return{PermitClick:false,Componente:'',play:false}},
+  data(){return{PermitClick:false,Componente:'',play:false,ListComp:[],Charge:true}},
   methods:{
     ClikPlay(e)
     {
@@ -51,6 +53,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .Charge
+  {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1d89ff;
+    z-index: 10;
+
+  }
   .home
   {
     position: relative;

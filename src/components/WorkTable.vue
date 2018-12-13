@@ -10,6 +10,7 @@
 import VueP5 from 'vue-p5';
 //import ProtoBoard from '../assets/Canvas/ProtoBoard.js';
 import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
+import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
     data(){
@@ -18,6 +19,7 @@ export default {
             ContadorClick:0,
             click:true,
             ListPuntClick:[],
+            sketch:{},
         }
     },
     methods:{
@@ -26,15 +28,18 @@ export default {
             this.$emit('Click');
              console.log(this.Componente);
             this.LisProtoBoard.Click()
+            //console.log(this.LisProtoBoard.ListProtoBoard);
            
             
         },
         setup(sketch)
         {
+            console.log(sketch)
             sketch.createCanvas(1200, 1000);
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
-
+            setupIconComp(sketch,this.ListComp);
+            this.$emit('Charge',false);
             // let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
             //                            {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
             //                            {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:10,y:2},Receptor:{Proto:'Norma1',x:15,y:2}},
@@ -81,7 +86,17 @@ export default {
     components: {
         VueP5
     },
-    props:{Componente:{type:String,default:''}}
+    props:{
+        Componente:{type:String,default:''},
+        ListComp:{type:Array,default:function(){return[]}}
+    },
+    watch:{
+        Componente:function(val)
+        {
+            console.log(val);
+            
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -103,7 +103,13 @@ export default {
         });
       }
   }},
-  props:{ActiveBt:{type:Boolean,default:false}}
+  props:{ActiveBt:{type:Boolean,default:false}},
+  beforeMount() { 
+    let NameComponente = [];
+   this.Componetes.forEach(element => {
+      NameComponente.push(element.Name)
+    });
+    this.$emit('load',NameComponente);}
 };
 </script>
 <style lang="scss" scoped>

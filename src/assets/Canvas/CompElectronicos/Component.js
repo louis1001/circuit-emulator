@@ -13,7 +13,7 @@ class Componente{
 
         this.cellSize = 20
 
-        // this.img = this.imgs[img]
+        this.img = this.prototype.imgs[img]
     }
 
     render(){
@@ -32,13 +32,8 @@ class Componente{
 
 Componente.prototype.imgs = {}
 
-export function setupIconComp(sketch){
-    console.log('Wrong!')
-    const ImageNames = [
-        "Resistencia",
-        "Bateria"
-    ]
-
+export function setupIconComp(sketch,ImageNames){
+    console.log('Wrong!')    
     ImageNames.forEach(img => {
         Componente.prototype.imgs[img] = undefined
         sketch.loadImage('/IconComp/' + img + '.png',
