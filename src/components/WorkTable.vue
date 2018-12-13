@@ -103,6 +103,15 @@ export default {
             }else{
                 this.LisProtoBoard.ActualizarComponenteSeleccionado('')
             }
+        },
+        play:function(val)
+        {
+            console.log(val);
+
+              if (val) {
+                  console.log(this.LisProtoBoard.boardComponents);
+                  this.$emit('GetCircut',this.LisProtoBoard.boardComponents);
+              }
         }
     }
 }
