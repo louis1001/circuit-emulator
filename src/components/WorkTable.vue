@@ -14,8 +14,12 @@ import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
 
 import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
 import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
+import Bateria from '../assets/Canvas/CompElectronicos/Bateria'
+import LED from '../assets/Canvas/CompElectronicos/LED'
 
 addComponent('Resistencia', Resistencia)
+addComponent('Bateria', Bateria)
+addComponent('LED', LED)
 
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
@@ -85,6 +89,27 @@ export default {
            // la ProtoBoard <Name,Type,Position(Localizacion del Nodo en la matriz)>
            // Estructura {Position:{x:0,y:0},Size:0,ProtoBoard:{Name:string,Type:string,Position:{x:0,y:0}}}
             //let SelectNodo = this.LisProtoBoard.SelectNodo;
+        },
+        ConvertVectorAndNodo(ListComp)
+        {
+            let NewListComp = [];
+            let CountType = {};
+            ListComp.forEach(element => {
+                let NewComp = {};
+                NewComp.Type = (typeof element)
+                if (CountType[NewComp.Type]!==undefined) {
+                    CountType[NewComp.Type]=0;
+                } 
+                else 
+                {
+                     CountType[NewComp.Type]= CountType[NewComp.Type]+1;
+                }
+                NewComp.Name =  NewComp.Type + CountType[NewComp.Type];
+
+
+            });
+            //this.LisProtoBoard.GetHoverNode
+            return NewListComp;
         }
     },
     components: {
