@@ -11,17 +11,20 @@ ColorMatrizNorma = {R:255,G:255,B:255},
 ColorMatrizPolo = {R:81,G:81,B:81};
 
 import Resistencia from './CompElectronicos/Resistencia'
+// import {setupIconComp} from './CompElectronicos/Component'
 
 export default class ListProtoBoard {
 
     constructor(canva,count,size)
     {
+        // setupIconComp(canva)
         MyCanva = canva;
         this.Count = count;
         this.Size = size;
         this.List = [];
         this.height = 0
         this.SelectNodo = {};
+        this.boardComponents = []
 
         this.resPrueba = new Resistencia(canva)
     }
@@ -62,6 +65,27 @@ export default class ListProtoBoard {
         for (let i = 0; i < this.List.length; i++) {
             this.List[i].Render();
         }
+
+        this.boardComponents.forEach(x=>{
+            x.render()
+        })
+
+        this.resPrueba.pos = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
+        this.resPrueba.render()
+    }
+
+    AddCompBoard(){
+        const elMouse = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
+        const NodeUnder = this.GetHoverNode(elMouse)
+        if (NodeUnder){
+            this.resPrueba.pos = MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y)
+
+            this.boardComponents.push(this.resPrueba)
+
+            this.resPrueba = new Resistencia(MyCanva)
+
+            console.log(NodeUnder)
+        }
     }
 
     GetHoverNode (elMouse){
@@ -88,6 +112,10 @@ export default class ListProtoBoard {
     Hover(elMouse)
     {
         this.SelectNodo = this.GetHoverNode(elMouse);
+    }
+
+    Click (){
+        this.AddCompBoard()
     }
 }
 

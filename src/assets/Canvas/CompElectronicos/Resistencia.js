@@ -7,15 +7,7 @@ class Resistencia extends Component{
 
         const gridSize = sketch.createVector(3, 1)
 
-        super(sketch, gridSize, ins, outs)
-
-        this.pos = sketch.createVector()
-        // const a = require('../../IconComp/Resistencia.svg')
-        // this.img = sketch.Image('/src/assets/IconComp/Resistencia.svg')
-    }
-
-    render(){
-
+        super(sketch, gridSize, 'Resistencia', ins, outs)
     }
 }
 

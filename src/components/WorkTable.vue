@@ -1,8 +1,8 @@
 <template>
     <div class="WorkTable">
-        <h1 @click="Click">Mesa de trabajo</h1>
-        <div class="Table">
-             <VueP5 class="P5"   v-on="{setup,draw}"></VueP5>
+        <h1>Mesa de trabajo</h1>
+        <div class="Table" @click="Click">
+            <VueP5 class="P5" v-on="{setup,draw}"></VueP5>
         </div>
     </div>
 </template>
@@ -10,7 +10,7 @@
 import VueP5 from 'vue-p5';
 //import ProtoBoard from '../assets/Canvas/ProtoBoard.js';
 import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
-import BdProlog from '../../Datos/PrologDc.js';
+// import BdProlog from '../../Datos/PrologDc.js';
 export default {
     data(){
         return{
@@ -23,7 +23,8 @@ export default {
     methods:{
         Click()
         {
-              this.$emit('Click');
+            this.$emit('Click');
+            this.LisProtoBoard.Click()
         },
         setup(sketch)
         {
@@ -31,25 +32,25 @@ export default {
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
 
-            let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
-                                       {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
-                                       {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:10,y:2},Receptor:{Proto:'Norma1',x:15,y:2}},
-                                       {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:20,y:2},Receptor:{Proto:'Norma1',x:25,y:2}},
-                                       {name:'Ld1',type:'LED',Emisor:{Proto:'Norma2',x:15,y:3},Receptor:{Proto:'Norma1',x:16,y:3}},
-                                       {name:'Ld1',type:'LED',Emisor:{Proto:'Norma1',x:15,y:3},Receptor:{Proto:'Norma1',x:16,y:3}},
-                                       {name:'Ld2',type:'LED',Emisor:{Proto:'Norma2',x:25,y:3},Receptor:{Proto:'Norma2',x:26,y:3}}],
-                            Cable:[{Emisor:{Proto:'Positive1',x:5,y:0},Receptor:{Proto:'Norma2',x:10,y:0}},
-                                   {Emisor:{Proto:'Norma2',x:16,y:1},Receptor:{Proto:'Negative1',x:5,y:0}},
-                                   {Emisor:{Proto:'Positive1',x:10,y:0},Receptor:{Proto:'Norma1',x:10,y:0}},
-                                   {Emisor:{Proto:'Norma1',x:16,y:0},Receptor:{Proto:'Norma1',x:20,y:0}},
-                                   {Emisor:{Proto:'Norma1',x:26,y:3},Receptor:{Proto:'Negative1',x:10,y:0}}]};
+            // let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
+            //                            {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
+            //                            {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:10,y:2},Receptor:{Proto:'Norma1',x:15,y:2}},
+            //                            {name:'Rt2',type:'Resistor',Emisor:{Proto:'Norma1',x:20,y:2},Receptor:{Proto:'Norma1',x:25,y:2}},
+            //                            {name:'Ld1',type:'LED',Emisor:{Proto:'Norma2',x:15,y:3},Receptor:{Proto:'Norma1',x:16,y:3}},
+            //                            {name:'Ld1',type:'LED',Emisor:{Proto:'Norma1',x:15,y:3},Receptor:{Proto:'Norma1',x:16,y:3}},
+            //                            {name:'Ld2',type:'LED',Emisor:{Proto:'Norma2',x:25,y:3},Receptor:{Proto:'Norma2',x:26,y:3}}],
+            //                 Cable:[{Emisor:{Proto:'Positive1',x:5,y:0},Receptor:{Proto:'Norma2',x:10,y:0}},
+            //                        {Emisor:{Proto:'Norma2',x:16,y:1},Receptor:{Proto:'Negative1',x:5,y:0}},
+            //                        {Emisor:{Proto:'Positive1',x:10,y:0},Receptor:{Proto:'Norma1',x:10,y:0}},
+            //                        {Emisor:{Proto:'Norma1',x:16,y:0},Receptor:{Proto:'Norma1',x:20,y:0}},
+            //                        {Emisor:{Proto:'Norma1',x:26,y:3},Receptor:{Proto:'Negative1',x:10,y:0}}]};
 
-            let BCprolog = new BdProlog(Circuito);
-            BCprolog.Create((err,query)=>{
-                query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
-                    console.log(value);
-                });
-            });
+            // let BCprolog = new BdProlog(Circuito);
+            // BCprolog.Create((err,query)=>{
+            //     query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
+            //         console.log(value);
+            //     });
+            // });
 
            // console.log(BCprolog.GetPredicado());
 
@@ -63,6 +64,7 @@ export default {
         },
         draw(sketch)
         {
+            sketch.background(206)
             const elMouse = sketch.createVector(sketch.mouseX, sketch.mouseY)
             this.LisProtoBoard.Hover(elMouse);
             this.LisProtoBoard.Render()
