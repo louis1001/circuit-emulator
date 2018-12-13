@@ -85,6 +85,7 @@ export default class ListProtoBoard {
             this.ComponenteSeleccionado.pos = MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y)
 
             this.boardComponents.push(this.ComponenteSeleccionado)
+            this.ActualizarComponenteSeleccionado('')
         }
     }
 
