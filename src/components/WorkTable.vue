@@ -21,7 +21,7 @@ export default {
         }
     },
     methods:{
-        Click(e)
+        Click()
         {
               this.$emit('Click');
         },
@@ -30,7 +30,6 @@ export default {
             sketch.createCanvas(1200, 1000);
             this.LisProtoBoard = new ListProtoBoard(sketch,2,100);
             this.LisProtoBoard.Create();
-            this.LisProtoBoard.Render();
 
             let Circuito = {Component:[{name:'P1',type:'Pila',Emisor:{Proto:'Negative1',x:0,y:0},Receptor:{Proto:'Positive1',x:1,y:0}},
                                        {name:'Rt1',type:'Resistor',Emisor:{Proto:'Norma2',x:10,y:2},Receptor:{Proto:'Norma2',x:15,y:2}},
@@ -49,7 +48,6 @@ export default {
             BCprolog.Create((err,query)=>{
                 query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
                     console.log(value);
-
                 });
             });
 
@@ -67,6 +65,7 @@ export default {
         {
             const elMouse = sketch.createVector(sketch.mouseX, sketch.mouseY)
             this.LisProtoBoard.Hover(elMouse);
+            this.LisProtoBoard.Render()
             // SelectNodo es:
            // Datos del Nodo <Position(Localizacion en el Canvas),Size> y su relacion con
            // la ProtoBoard <Name,Type,Position(Localizacion del Nodo en la matriz)>
