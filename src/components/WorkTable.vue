@@ -124,7 +124,7 @@ export default {
         Componente:function(val)
         {
             if(val){
-                this.LisProtoBoard.ActualizarComponenteSeleccionado("Resistencia")
+                this.LisProtoBoard.ActualizarComponenteSeleccionado(val)
             }else{
                 this.LisProtoBoard.ActualizarComponenteSeleccionado('')
             }
