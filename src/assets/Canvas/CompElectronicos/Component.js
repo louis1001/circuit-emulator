@@ -47,6 +47,12 @@ class Componente{
             }
         }
 
+        this.renderImage()
+
+        this.sketch.pop()
+    }
+
+    renderImage(){
         const imgDim = {
             x: this.pos.x + (this.cellSize * this.gridSize.x)/2 - this.cellSize/4,
             y: this.pos.y + (this.cellSize * this.gridSize.y)/2 - this.cellSize/4,
@@ -56,8 +62,6 @@ class Componente{
 
         this.sketch.imageMode(this.sketch.CENTER)
         this.sketch.image(this.img, imgDim.x, imgDim.y, imgDim.w, imgDim.h)
-
-        this.sketch.pop()
     }
 }
 

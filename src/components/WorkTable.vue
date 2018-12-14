@@ -13,6 +13,7 @@ import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
 import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
 
 import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
+import Cable from '../assets/Canvas/CompElectronicos/Cable'
 import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
 import Bateria from '../assets/Canvas/CompElectronicos/Bateria'
 import LED from '../assets/Canvas/CompElectronicos/LED'
@@ -26,6 +27,7 @@ import Diac from '../assets/Canvas/CompElectronicos/Diac'
 import Rele from '../assets/Canvas/CompElectronicos/Rele'
 import Transistor from '../assets/Canvas/CompElectronicos/Transistor'
 
+addComponent('Cable', Cable)
 addComponent('Resistencia', Resistencia)
 addComponent('Bateria', Bateria)
 addComponent('LED', LED)

@@ -23,6 +23,11 @@ export default {
     return {
       Componetes: [
         {
+          Name: "Cable",
+          link: require("../assets/IconComp/Cable.svg"),
+          Click: 0
+        },
+        {
           Name: "Bateria",
           link: require("../assets/IconComp/Bateria.svg"),
           Click: 0
@@ -104,7 +109,7 @@ export default {
       }
   }},
   props:{ActiveBt:{type:Boolean,default:false}},
-  beforeMount() { 
+  beforeMount() {
     let NameComponente = [];
    this.Componetes.forEach(element => {
       NameComponente.push(element.Name)

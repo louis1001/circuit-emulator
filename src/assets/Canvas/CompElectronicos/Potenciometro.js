@@ -7,7 +7,7 @@ class Potenciometro extends Component{
 
         const gridSize = sketch.createVector(3, 3)
 
-        const mouseOffset = sketch.createVector(1, 3)
+        const mouseOffset = sketch.createVector(1, 2)
 
         super(sketch, gridSize, 'Potenciometro', ins, outs, mouseOffset)
 
