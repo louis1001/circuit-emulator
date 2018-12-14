@@ -11,7 +11,6 @@ import VueP5 from 'vue-p5';
 //import ProtoBoard from '../assets/Canvas/ProtoBoard.js';
 import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
 import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
-
 import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
 import Cable from '../assets/Canvas/CompElectronicos/Cable'
 import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
@@ -40,8 +39,6 @@ addComponent('Potenciometro', Potenciometro)
 addComponent('Diac', Diac)
 addComponent('Rele', Rele)
 addComponent('Transistor', Transistor)
-
-
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
     data(){
@@ -59,8 +56,6 @@ export default {
             this.$emit('Click');
             this.LisProtoBoard.Click()
             //console.log(this.LisProtoBoard.ListProtoBoard);
-
-
         },
         setup(sketch)
         {
@@ -81,23 +76,19 @@ export default {
             //                        {Emisor:{Proto:'Positive1',x:10,y:0},Receptor:{Proto:'Norma1',x:10,y:0}},
             //                        {Emisor:{Proto:'Norma1',x:16,y:0},Receptor:{Proto:'Norma1',x:20,y:0}},
             //                        {Emisor:{Proto:'Norma1',x:26,y:3},Receptor:{Proto:'Negative1',x:10,y:0}}]};
-
             // let BCprolog = new BdProlog(Circuito);
             // BCprolog.Create((err,query)=>{
             //     query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
             //         console.log(value);
             //     });
             // });
-
            // console.log(BCprolog.GetPredicado());
-
             //let BdTau = new BdProlog();
            /* let BConocimento = TauProlog.create();
             BConocimento.consult("prueba(12,2,'Pedo').");
             BConocimento.query("prueba(12,Y,Z).");
             let call =function( answer ) { console.log( pl.format_answer( answer ) ); };
             BConocimento.answer(call);*/
-
         },
         draw(sketch)
         {
@@ -126,8 +117,6 @@ export default {
                      CountType[NewComp.Type]= CountType[NewComp.Type]+1;
                 }
                 NewComp.Name =  NewComp.Type + CountType[NewComp.Type];
-
-
             });
             //this.LisProtoBoard.GetHoverNode
             return NewListComp;
@@ -152,11 +141,10 @@ export default {
         },
         play:function(val)
         {
-            console.log(val);
-
               if (val) {
-                  console.log(this.LisProtoBoard.boardComponents);
-                  this.$emit('GetCircut',this.LisProtoBoard.boardComponents);
+                   let ListConvert = new Convert(this.LisProtoBoard);
+                   let ListComp = ListConvert.ConvertVectorAndNodo();
+                  this.$emit('GetCircut',ListComp);
               }
         }
     }

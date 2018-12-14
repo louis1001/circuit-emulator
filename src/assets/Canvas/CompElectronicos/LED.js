@@ -7,11 +7,7 @@ class LED extends Component{
 
         const gridSize = sketch.createVector(2, 3)
 
-        const mouseOffset = sketch.createVector(0, 2)
-
-        super(sketch, gridSize, 'LED', ins, outs, mouseOffset)
-
-        this.imgScale = 0.8
+        super(sketch, gridSize, 'LED', ins, outs)
     }
 }
 

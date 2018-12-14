@@ -1,5 +1,3 @@
-
-
 var MyCanva = {},
 ColorNodoHover = {R:0,G:177,B:106},
 ColorNodoNormal = {R:81,G:81,B:81},
