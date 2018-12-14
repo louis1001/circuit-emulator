@@ -26,6 +26,8 @@ import Diac from '../assets/Canvas/CompElectronicos/Diac'
 import Rele from '../assets/Canvas/CompElectronicos/Rele'
 import Transistor from '../assets/Canvas/CompElectronicos/Transistor'
 
+import Convert from '../assets/Canvas/Convert'
+
 addComponent('Cable', Cable)
 addComponent('Resistencia', Resistencia)
 addComponent('Bateria', Bateria)
