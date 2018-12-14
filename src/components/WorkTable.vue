@@ -17,6 +17,8 @@ import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
 import Bateria from '../assets/Canvas/CompElectronicos/Bateria'
 import LED from '../assets/Canvas/CompElectronicos/LED'
 
+import Convert from '../assets/Canvas/Convert'
+
 addComponent('Resistencia', Resistencia)
 addComponent('Bateria', Bateria)
 addComponent('LED', LED)
@@ -90,27 +92,7 @@ export default {
            // Estructura {Position:{x:0,y:0},Size:0,ProtoBoard:{Name:string,Type:string,Position:{x:0,y:0}}}
             //let SelectNodo = this.LisProtoBoard.SelectNodo;
         },
-        ConvertVectorAndNodo(ListComp)
-        {
-            let NewListComp = [];
-            let CountType = {};
-            ListComp.forEach(element => {
-                let NewComp = {};
-                NewComp.Type = (typeof element)
-                if (CountType[NewComp.Type]!==undefined) {
-                    CountType[NewComp.Type]=0;
-                } 
-                else 
-                {
-                     CountType[NewComp.Type]= CountType[NewComp.Type]+1;
-                }
-                NewComp.Name =  NewComp.Type + CountType[NewComp.Type];
-
-
-            });
-            //this.LisProtoBoard.GetHoverNode
-            return NewListComp;
-        }
+        
     },
     components: {
         VueP5
@@ -134,8 +116,10 @@ export default {
             console.log(val);
 
               if (val) {
-                  console.log(this.LisProtoBoard.boardComponents);
-                  this.$emit('GetCircut',this.LisProtoBoard.boardComponents);
+                   let ListConvert = new Convert(this.LisProtoBoard);
+                   let ListComp = ListConvert.ConvertVectorAndNodo();
+                   let data = 
+                  this.$emit('GetCircut',ListComp);
               }
         }
     }
