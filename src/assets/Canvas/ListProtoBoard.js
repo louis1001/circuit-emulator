@@ -1,5 +1,3 @@
-
-
 var MyCanva = {},
 ColorNodoHover = {R:0,G:177,B:106},
 ColorNodoNormal = {R:81,G:81,B:81},
@@ -70,7 +68,7 @@ export default class ListProtoBoard {
         })
 
         if (this.ComponenteSeleccionado) {
-            this.ComponenteSeleccionado.pos = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
+            this.ComponenteSeleccionado.setPos(MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY))
             this.ComponenteSeleccionado.render()
         }
 
@@ -82,7 +80,7 @@ export default class ListProtoBoard {
         const elMouse = MyCanva.createVector(MyCanva.mouseX, MyCanva.mouseY)
         const NodeUnder = this.GetHoverNode(elMouse)
         if (NodeUnder && this.ComponenteSeleccionado){
-            this.ComponenteSeleccionado.pos = MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y)
+            this.ComponenteSeleccionado.setPos(MyCanva.createVector(NodeUnder.Position.x, NodeUnder.Position.y))
 
             this.boardComponents.push(this.ComponenteSeleccionado)
             this.ActualizarComponenteSeleccionado('')

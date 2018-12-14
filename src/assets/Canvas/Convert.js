@@ -60,6 +60,8 @@ export default class Convert
             if (Pnodo.y==0) Pnodo.y = 1
             console.log('Position Nodo');     
             console.log({x:Pnodo.x,y:Pnodo.y});
+            console.log('s');
+            
             return {x:Pnodo.x*posicion.x,y:Pnodo.y*posicion.y}
         }
 }

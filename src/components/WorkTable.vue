@@ -11,18 +11,31 @@ import VueP5 from 'vue-p5';
 //import ProtoBoard from '../assets/Canvas/ProtoBoard.js';
 import ListProtoBoard from '../assets/Canvas/ListProtoBoard.js';
 import {setupIconComp} from '../assets/Canvas/CompElectronicos/Component.js'
-
 import {addComponent} from '../assets/Canvas/CompElectronicos/Component'
 import Resistencia from '../assets/Canvas/CompElectronicos/Resistencia'
 import Bateria from '../assets/Canvas/CompElectronicos/Bateria'
 import LED from '../assets/Canvas/CompElectronicos/LED'
-
-import Convert from '../assets/Canvas/Convert'
-
+import Diodo from '../assets/Canvas/CompElectronicos/Diodo'
+import Fusible from '../assets/Canvas/CompElectronicos/Fusible'
+import Condensador from '../assets/Canvas/CompElectronicos/Condensador'
+import Interruptor from '../assets/Canvas/CompElectronicos/Interruptor'
+import Bobina from '../assets/Canvas/CompElectronicos/Bobina'
+import Potenciometro from '../assets/Canvas/CompElectronicos/Potenciometro'
+import Diac from '../assets/Canvas/CompElectronicos/Diac'
+import Rele from '../assets/Canvas/CompElectronicos/Rele'
+import Transistor from '../assets/Canvas/CompElectronicos/Transistor'
 addComponent('Resistencia', Resistencia)
 addComponent('Bateria', Bateria)
 addComponent('LED', LED)
-
+addComponent('Diodo', Diodo)
+addComponent('Fusible', Fusible)
+addComponent('Bobina', Bobina)
+addComponent('Interructor', Interruptor)
+addComponent('Condensador', Condensador)
+addComponent('Potenciometro', Potenciometro)
+addComponent('Diac', Diac)
+addComponent('Rele', Rele)
+addComponent('Transistor', Transistor)
 // import BdProlog from '../../Datos/PrologDc.js';
 export default {
     data(){
@@ -40,8 +53,6 @@ export default {
             this.$emit('Click');
             this.LisProtoBoard.Click()
             //console.log(this.LisProtoBoard.ListProtoBoard);
-
-
         },
         setup(sketch)
         {
@@ -62,23 +73,19 @@ export default {
             //                        {Emisor:{Proto:'Positive1',x:10,y:0},Receptor:{Proto:'Norma1',x:10,y:0}},
             //                        {Emisor:{Proto:'Norma1',x:16,y:0},Receptor:{Proto:'Norma1',x:20,y:0}},
             //                        {Emisor:{Proto:'Norma1',x:26,y:3},Receptor:{Proto:'Negative1',x:10,y:0}}]};
-
             // let BCprolog = new BdProlog(Circuito);
             // BCprolog.Create((err,query)=>{
             //     query.Consult(`paralelo('Rt1',E).`,(err,value)=>{
             //         console.log(value);
             //     });
             // });
-
            // console.log(BCprolog.GetPredicado());
-
             //let BdTau = new BdProlog();
            /* let BConocimento = TauProlog.create();
             BConocimento.consult("prueba(12,2,'Pedo').");
             BConocimento.query("prueba(12,Y,Z).");
             let call =function( answer ) { console.log( pl.format_answer( answer ) ); };
             BConocimento.answer(call);*/
-
         },
         draw(sketch)
         {
@@ -92,7 +99,25 @@ export default {
            // Estructura {Position:{x:0,y:0},Size:0,ProtoBoard:{Name:string,Type:string,Position:{x:0,y:0}}}
             //let SelectNodo = this.LisProtoBoard.SelectNodo;
         },
-        
+        ConvertVectorAndNodo(ListComp)
+        {
+            let NewListComp = [];
+            let CountType = {};
+            ListComp.forEach(element => {
+                let NewComp = {};
+                NewComp.Type = (typeof element)
+                if (CountType[NewComp.Type]!==undefined) {
+                    CountType[NewComp.Type]=0;
+                }
+                else
+                {
+                     CountType[NewComp.Type]= CountType[NewComp.Type]+1;
+                }
+                NewComp.Name =  NewComp.Type + CountType[NewComp.Type];
+            });
+            //this.LisProtoBoard.GetHoverNode
+            return NewListComp;
+        }
     },
     components: {
         VueP5
@@ -113,12 +138,9 @@ export default {
         },
         play:function(val)
         {
-            console.log(val);
-
               if (val) {
                    let ListConvert = new Convert(this.LisProtoBoard);
                    let ListComp = ListConvert.ConvertVectorAndNodo();
-                   let data = 
                   this.$emit('GetCircut',ListComp);
               }
         }
