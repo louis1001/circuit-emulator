@@ -7,7 +7,11 @@ class Resistencia extends Component{
 
         const gridSize = sketch.createVector(3, 1)
 
-        super(sketch, gridSize, 'Resistencia', ins, outs)
+        const mouseOffset = sketch.createVector(1, 0)
+
+        super(sketch, gridSize, 'Resistencia', ins, outs, mouseOffset)
+
+        this.imgScale = 0.7
     }
 }
 
