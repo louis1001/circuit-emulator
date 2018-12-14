@@ -18,6 +18,14 @@ class Cable extends Component{
 
     renderImage(){
 
+        this.sketch.stroke('#FC003F')
+        this.sketch.strokeWeight(4)
+        this.sketch.line(
+            this.pos.x,// + this.cellSize/4,
+            this.pos.y + this.cellSize/4,
+            this.pos.x - this.cellSize/2 + (this.gridSize.x * this.cellSize),
+            this.pos.y + this.cellSize/4,
+        )
     }
 }
 

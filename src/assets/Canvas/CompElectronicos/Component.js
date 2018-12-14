@@ -36,16 +36,16 @@ class Componente{
         this.sketch.push()
         this.sketch.strokeWeight(1)
         //this.sketch.fill(0)
-        this.sketch.stroke(100)
-        for (let i = 0; i < this.gridSize.x; i++){
-            for (let j = 0; j < this.gridSize.y; j++){
-                this.sketch.rect(
-                    (this.pos.x - this.cellSize/4) + i * this.cellSize,
-                    (this.pos.y - this.cellSize/4) + j * this.cellSize,
-                    this.cellSize,
-                    this.cellSize)
-            }
-        }
+        // this.sketch.stroke(100)
+        // for (let i = 0; i < this.gridSize.x; i++){
+        //     for (let j = 0; j < this.gridSize.y; j++){
+        //         this.sketch.rect(
+        //             (this.pos.x - this.cellSize/4) + i * this.cellSize,
+        //             (this.pos.y - this.cellSize/4) + j * this.cellSize,
+        //             this.cellSize,
+        //             this.cellSize)
+        //     }
+        // }
 
         this.renderImage()
 
