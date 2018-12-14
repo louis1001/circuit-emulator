@@ -1,11 +1,12 @@
 
 class Componente{
-    constructor(sketch, gridSize, img, ins = [], outs = []) {
+    constructor(sketch, gridSize, img, ins = [], outs = [], mouseOffset = undefined) {
 
         this.gridSize = gridSize || sketch.createVector()
 
 		this.ins = ins
         this.outs = outs
+        this.mouseOffset = mouseOffset || sketch.createVector()
 
         this.sketch = sketch
 
@@ -13,23 +14,38 @@ class Componente{
 
         this.cellSize = 20
 
+        this.imgScale = 1
+
         this.img = this.imgs[img]
+    }
+
+    setPos(newPos, useMouseOffset = true){
+
+        if(useMouseOffset){
+            const realOffset = this.sketch.createVector(
+                this.mouseOffset.x * this.cellSize,
+                this.mouseOffset.y * this.cellSize,
+            )
+            newPos.sub(realOffset)
+        }
+        // console.log(this.mouseOffset)
+        this.pos = newPos
     }
 
     render(){
         this.sketch.push()
-        // this.sketch.strokeWeight(1)
-        // //this.sketch.fill(0)
-        // this.sketch.stroke(100)
-        // for (let i = 0; i < this.gridSize.x; i++){
-        //     for (let j = 0; j < this.gridSize.y; j++){
-        //         this.sketch.rect(
-        //             (this.pos.x - this.cellSize/4) + i * this.cellSize,
-        //             (this.pos.y - this.cellSize/4) + j * this.cellSize,
-        //             this.cellSize,
-        //             this.cellSize)
-        //     }
-        // }
+        this.sketch.strokeWeight(1)
+        //this.sketch.fill(0)
+        this.sketch.stroke(100)
+        for (let i = 0; i < this.gridSize.x; i++){
+            for (let j = 0; j < this.gridSize.y; j++){
+                this.sketch.rect(
+                    (this.pos.x - this.cellSize/4) + i * this.cellSize,
+                    (this.pos.y - this.cellSize/4) + j * this.cellSize,
+                    this.cellSize,
+                    this.cellSize)
+            }
+        }
 
         this.renderImage()
 
@@ -40,8 +56,8 @@ class Componente{
         const imgDim = {
             x: this.pos.x + (this.cellSize * this.gridSize.x)/2 - this.cellSize/4,
             y: this.pos.y + (this.cellSize * this.gridSize.y)/2 - this.cellSize/4,
-            w: this.gridSize.x * this.cellSize * 0.7,
-            h: this.gridSize.y * this.cellSize * 0.7
+            w: this.gridSize.x * this.cellSize * this.imgScale,
+            h: this.gridSize.y * this.cellSize * this.imgScale
         }
 
         this.sketch.imageMode(this.sketch.CENTER)
